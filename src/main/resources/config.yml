@@ -1,0 +1,158 @@
+# Global configuration for PurpleIRC
+# NOTE: If you make changes to this file while the server is running use "/irc reloadconfig" to load the changes into memory.
+# Check for updates
+update-checker: true
+# Update checker mode: stable or dev
+update-checker-mode: stable
+# How often we check to see if a bot is connected to the IRC server. This is in server ticks (There 20 ticks in one sec).
+conn-check-interval: 1000
+# Suppress connection failure messages after this many reconnect attempts
+reconnect-fail-message-count: 10
+# Startup an ident server
+enable-ident-server: false
+# How often we check the channel user list
+channel-check-interval: 100
+# Chat messages support standard Bukkit color codes using '&#'. See http://minecraft.gamepedia.com/Formatting_codes
+# The following macro tokens are also supported.
+#  %WORLD% 
+#  %NAME% 
+#  %HOST% - Host of player or IRC user
+#  %SERVER% - Server of IRC user
+#  %AWAY% - IRC user away message
+#  %KICKERHOST% - Host of IRC kicker
+#  %KICKERSERVER% - Server of IRC kicker
+#  %KICKERAWAY% - IRC kicker away message
+#  %NICKPREFIX% - IRC user's status (see nick-prefixes below)
+#  %DISPLAYNAME% - Player's custom name
+#  %PLAYERIP% - IP address of a player
+#  %CHANNEL% 
+#  %MESSAGE%
+#  %KICKER% - IRC kicker name
+#  %TOPIC%
+#  %REASON%
+message-format:
+  # Message templates for game to IRC messages  
+  console-chat: '[&dServer&r] %MESSAGE%' 
+  game-achievement: '[&2%WORLD%&r] %NAME% has just earned the achievement [%MESSAGE%]'
+  game-mode: '[&2%WORLD%&r] %NAME% has changed game mode: [%MESSAGE%]'
+  game-action: '[&2%WORLD%&r]***%NAME% %MESSAGE%'
+  game-pchat: '[&2%WORLD%] <%NAME%> %MESSAGE%'
+  # Notification to player when sending a private message to an IRC user
+  game-pchat-response: ' &6-> &7%TARGET%: %MESSAGE%'
+  game-chat: '[&2%WORLD%&r] <%NAME%> %MESSAGE%'  
+  game-death: '[&2%WORLD%&r] %MESSAGE%'    
+  game-kick: '[&2%WORLD%&r] %MESSAGE%: %REASON%'
+  game-join: '[&2%WORLD%&r] %NAME% joined the game.'
+  game-quit: '[&2%WORLD%&r] %NAME% left the game.'
+  game-command: '[&2%WORLD%&r] Command detected by %NAME%: %COMMAND% %PARAMS%'
+  # Message template for "/irc send" to IRC message
+  game-send: '[&2%WORLD%&r]<%NAME%> %MESSAGE%' 
+  # Message templates for IRC to game messages
+  irc-action: '[&4IRC&r] ***%NAME% %MESSAGE%'
+  irc-chat: '[&4IRC&r]<%NAME%> %MESSAGE%'  
+  # Response message when using @chat or @ochat
+  irc-chat-response: ' &6-> &7Minecraft: %MESSAGE%'
+  irc-pchat: '&dPrivate message: [&4IRC&r]<%NAME%> %MESSAGE%' 
+  # Notification to user when sending a private message to a player
+  irc-pchat-response: ' &6-> &7%TARGET%: %MESSAGE%'
+  irc-join: '[&4IRC&r] %NAME% has joined %CHANNEL%.'
+  irc-kick: '[&4IRC&r] %NAME% was kicked from %CHANNEL% by %KICKER%. (Reason- %REASON%)'
+  irc-part: '[&4IRC&r] %NAME% has left %CHANNEL%.'  
+  irc-quit: '[&4IRC&r] %NAME% has left %CHANNEL%. (Reason: %REASON%)'  
+  irc-topic: '[&4IRC&r] Topic changed by %NAME%: %TOPIC%.'  
+  irc-nickchange: '[&4IRC&r] %OLDNICK% is now known as %NEWNICK%.'  
+  irc-mode: '[&4IRC&r] %NAME% %MODE% on %CHANNEL%'
+  irc-console-chat: '&f[&5IRC&f]&r<%NAME%> %MESSAGE%'
+  irc-notice: '[&4IRC&r] [notice(%CHANNEL%)] %NOTICE% '  
+  # Help reply message
+  valid-irc-commands: 'Valid commands: %COMMANDS%'
+  # Invalid IRC command message
+  invalid-irc-command: "I'm sorry '%NICK%' I can't do that. Type '%CMDPREFIX%help' for a list of commands I might respond to."
+  no-perm-for-irc-command: "I'm sorry '%NICK%' you are not authorized to do that. Type '%CMDPREFIX%help' for a list of commands I might respond to."
+  # Dynmap Web Chat to IRC
+  dynmap-web-chat: '[Dynmap] <%NAME%> %MESSAGE%'
+  # IRC to Dynmap Chat
+  irc-dynmap-web-chat: '%MESSAGE%'
+  # IRC acion to Dynmap Chat (/me)
+  irc-action-dynmap-web-chat: '[IRC] ***%NAME% %MESSAGE%'
+  # Optionally format the nick (workaround for dynamp message formatting issue)
+  irc-dynmap-nick: '[IRC] %NICK%'
+  irc-dynmap-action-nick: '[IRC] ***%NICK%'
+  broadcast-message: '[Broadcast] <%NAME%> %MESSAGE%'
+  broadcast-console-message: '[Broadcast] <Console> %MESSAGE%'  
+  default-player-suffix: ''
+  default-player-prefix: ''
+  default-group-suffix: ''
+  default-group-prefix: ''
+  default-player-world: 'world'
+  default-player-group: ''  
+# Format for the @list command in IRC
+list-format: '[&9Minecraft&r] &2Online &r(%COUNT%/%MAX%): %PLAYERS%'
+list-separator: ', '
+list-player: '%NAME%'
+# Sort playerlist by %NAME% and not by list-player format
+list-sort-by-name: true
+# Prevent game colors from appearing in IRC
+strip-game-colors: false
+# Prevent IRC colors from appearing in game
+strip-irc-colors: false
+# Strip IRC background colors (recommend leaving this as true)
+strip-irc-bg-colors: true
+# IRC nick must be an exact match to a player name for token expanding
+nick-exact-match: true
+# IRC nick prefixes (can include & color codes)
+nick-prefixes:
+    ircop: '&4~'
+    ircsuperop: '&6&&'
+    op: '&c@'
+    halfop: '&3%'
+    voice: '&2+'
+# See http://site.pircbotx.googlecode.com/hg/apidocs/org/pircbotx/Colors.html for IRC color names
+# See http://jd.bukkit.org/rb/doxygen/d7/dc0/enumorg_1_1bukkit_1_1ChatColor.html for game color names
+# Game to IRC color map: Game Color Code => IRC Color Code
+irc-color-map:
+    AQUA: CYAN
+    BLACK: BLACK
+    BLUE: BLUE
+    BOLD: BOLD
+    DARK_AQUA: TEAL
+    DARK_BLUE: DARK_BLUE
+    DARK_GRAY: DARK_GRAY
+    DARK_GREEN: DARK_GREEN
+    DARK_PURPLE: PURPLE
+    DARK_RED: RED
+    GOLD: OLIVE
+    GRAY: LIGHT_GRAY
+    GREEN: GREEN
+    LIGHT_PURPLE: MAGENTA
+    RED: RED
+    UNDERLINE: UNDERLINE
+    YELLOW: YELLOW
+    WHITE: WHITE
+    RESET: NORMAL  
+# IRC to game color map: IRC Color Code => Game Color Code
+game-color-map:
+    BLACK: BLACK
+    BLUE: BLUE    
+    BOLD: BOLD
+    BROWN: GRAY
+    CYAN: AQUA            
+    DARK_BLUE: DARK_BLUE
+    DARK_GRAY: DARK_GRAY        
+    DARK_GREEN: DARK_GREEN
+    GREEN: GREEN
+    LIGHT_GRAY: GRAY
+    MAGENTA: LIGHT_PURPLE
+    NORMAL: RESET
+    OLIVE: GOLD
+    PURPLE: DARK_PURPLE
+    RED: RED
+    TEAL: DARK_AQUA
+    UNDERLINE: UNDERLINE
+    WHITE: WHITE
+    YELLOW: YELLOW
+Debug: false
+# Ignore chat cancellation.
+ignore-chat-cancel: false
+# Broadcast IRC chat to console
+broadcast-chat-to-console: true

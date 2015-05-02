@@ -1,0 +1,16 @@
+[
+{
+  "modid": "PurpleIRC",
+  "name": "PurpleIRC",
+  "description": "An IRC chat relay.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://jenkins.cnaude.org",
+  "updateUrl": "",
+  "authorList": ["cnaude"],
+  "credits": "Made by Chris Naude",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

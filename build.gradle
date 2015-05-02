@@ -1,0 +1,84 @@
+buildscript {  
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+        //maven {
+        //    name 'Drakon.io Arca'
+        //    url "http://arca.drakon.io/"
+        //}
+        maven {
+            name 'Chris Naude'
+            url "http://www.cnaude.org/repo"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath 'org.yaml:snakeyaml:1.15'
+        classpath 'com.googlecode.json-simple:json-simple:1.1.1'
+        classpath 'com.cnaude.pircbotx:pircbotx:2.1.1'
+        classpath 'com.google.guava:guava:17.0'
+    }
+}
+
+configurations {
+    shade
+    compile.extendsFrom shade
+}
+
+apply plugin: 'forge'
+apply plugin: 'java' // or 'groovy'. Must be explicitly applied
+
+version = "${minecraft_version}-${PurpleIRC_version}"
+group = "com.cnaude.purpleirc"
+archivesBaseName = "PurpleIRC"
+
+minecraft {
+    version = "${minecraft_version}-${forge_version}"
+    runDir = "eclipse"
+    srgExtra "PK: io/drakon/pulsar /"
+    
+    replaceIn "Version.java"
+    replace "@VERSION@", "${project.version}"
+}
+
+dependencies {
+    compile fileTree (dir: 'lib', include: '*.jar')
+    shade fileTree (dir: 'dist-lib', include: '*.jar')
+    shade 'org.yaml:snakeyaml:1.15'
+    shade 'com.googlecode.json-simple:json-simple:1.1.1'
+}
+
+jar {
+    configurations.shade.each { dep ->
+        from(project.zipTree(dep)){
+            exclude 'META-INF', 'META-INF/**'
+        }
+    }
+}
+    
+processResources
+{
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+        
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
