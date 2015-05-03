@@ -49,7 +49,7 @@ minecraft {
     replaceIn "Version.java"
     replace "@VERSION@", "${project.version}"
 }
-
+ 
 dependencies {
     compile fileTree (dir: 'lib', include: '*.jar')
     shade fileTree (dir: 'dist-lib', include: '*.jar')
