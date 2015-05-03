@@ -37,7 +37,8 @@ apply plugin: 'forge'
 apply plugin: 'java' // or 'groovy'. Must be explicitly applied
 apply plugin: 'maven-publish'
 
-version = "${minecraft_version}-${PurpleIRC_version}"
+def jenkinsBuild = System.getenv("BUILD_NUMBER") ?: "SNAPSHOT"
+version = "${minecraft_version}-${PurpleIRC_version}-${jenkinsBuild}"
 group = "com.cnaude.purpleirc"
 archivesBaseName = "PurpleIRC"
 
@@ -59,7 +60,6 @@ minecraft {
 }
  
 dependencies {
-    //compile fileTree (dir: 'lib', include: '*.jar')
     compile 'us.dynmap:DynmapCoreAPI:2.1'
     shade fileTree (dir: 'dist-lib', include: '*.jar')
     shade 'org.yaml:snakeyaml:1.15'
