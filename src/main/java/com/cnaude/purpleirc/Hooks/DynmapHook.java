@@ -37,18 +37,24 @@ public class DynmapHook {
         this.plugin = plugin;
         this.dynmapAPI = api;
     }
-    
+
     /**
      *
      * @param nick
      * @param message
      */
     public void sendMessage(String nick, String message) {
-         dynmapAPI.sendBroadcastToWeb(nick, message);
+        if (nick == null) {
+            nick = "";
+        }
+        if (message == null) {
+            return;
+        }
+        dynmapAPI.sendBroadcastToWeb(nick, message);
     }
-    
+
     public DynmapCommonAPI getApi() {
         return dynmapAPI;
     }
-    
+
 }

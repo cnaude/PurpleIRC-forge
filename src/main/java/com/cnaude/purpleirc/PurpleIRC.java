@@ -79,7 +79,7 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = PurpleIRC.MOD_ID, version = Version.VER, acceptableRemoteVersions = "*")
 public class PurpleIRC {
 
-    public static final String MOD_ID = "PurpleIRC";    
+    public static final String MOD_ID = "PurpleIRC";
 
     @Mod.Instance(MOD_ID)
     public static PurpleIRC instance;
@@ -219,9 +219,8 @@ public class PurpleIRC {
 
         MinecraftForge.EVENT_BUS.register(new GamePlayerDeathListener(this));
         MinecraftForge.EVENT_BUS.register(new GameServerCommandListener(this));
-        
         MinecraftForge.EVENT_BUS.register(new GamePlayerChatListener(this));
-        
+
         FMLCommonHandler.instance().bus().register(new GamePlayerJoinListener(this));
         FMLCommonHandler.instance().bus().register(new GamePlayerQuitListener(this));
         FMLCommonHandler.instance().bus().register(new GamePlayerPlayerAchievementAwardedListener(this));
@@ -229,8 +228,8 @@ public class PurpleIRC {
     }
 
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent event) {        
-        if (Loader.isModLoaded("Dynmap")) {            
+    public void postInit(FMLPostInitializationEvent event) {
+        if (Loader.isModLoaded("Dynmap")) {
             FMLCommonHandler.instance().bus().register(new DynmapListener(this));
         }
     }
@@ -347,8 +346,8 @@ public class PurpleIRC {
         debugEnabled = getConfig().getOption("Debug", false);
         logDebug("Debug enabled");
         updateCheckerEnabled = getConfig().getOption("update-checker", true);
-        updateCheckerMode = getConfig().getOption("update-checker-mode", "stable");        
-        identServerEnabled = getConfig().getOption("enable-ident-server", false);        
+        updateCheckerMode = getConfig().getOption("update-checker-mode", "stable");
+        identServerEnabled = getConfig().getOption("enable-ident-server", false);
         stripGameColors = getConfig().getOption("strip-game-colors", false);
         stripIRCColors = getConfig().getOption("strip-irc-colors", false);
         stripIRCBackgroundColors = getConfig().getOption("strip-irc-bg-colors", true);
