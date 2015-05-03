@@ -11,21 +11,20 @@ buildscript {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
-        //maven {
-        //    name 'Drakon.io Arca'
-        //    url "http://arca.drakon.io/"
-        //}
         maven {
             name 'Chris Naude'
-            url "http://www.cnaude.org/repo"
-        }
+            url "http://www.cnaude.org/repo"          
+        }       
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
-        classpath 'org.yaml:snakeyaml:1.15'
-        classpath 'com.googlecode.json-simple:json-simple:1.1.1'
-        classpath 'com.cnaude.pircbotx:pircbotx:2.1.1'
-        classpath 'com.google.guava:guava:17.0'
+    }
+}
+
+repositories {
+    maven {
+        name = "dynmap"
+        url = "http://repo.mikeprimm.com/"
     }
 }
 
@@ -36,10 +35,19 @@ configurations {
 
 apply plugin: 'forge'
 apply plugin: 'java' // or 'groovy'. Must be explicitly applied
+apply plugin: 'maven-publish'
 
 version = "${minecraft_version}-${PurpleIRC_version}"
 group = "com.cnaude.purpleirc"
 archivesBaseName = "PurpleIRC"
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
 
 minecraft {
     version = "${minecraft_version}-${forge_version}"
@@ -51,7 +59,8 @@ minecraft {
 }
  
 dependencies {
-    compile fileTree (dir: 'lib', include: '*.jar')
+    //compile fileTree (dir: 'lib', include: '*.jar')
+    compile 'us.dynmap:DynmapCoreAPI:2.1'
     shade fileTree (dir: 'dist-lib', include: '*.jar')
     shade 'org.yaml:snakeyaml:1.15'
     shade 'com.googlecode.json-simple:json-simple:1.1.1'
