@@ -51,7 +51,7 @@ public class UpdateChecker {
         this.plugin = plugin;
         this.currentVersion = plugin.getDescription().getVersion();
         try {
-            currentBuild = Integer.valueOf(currentVersion.split("-")[1]);
+            currentBuild = Integer.valueOf(currentVersion.split("-")[2]);
         } catch (NumberFormatException e) {
             currentBuild = 0;
         }
@@ -92,7 +92,7 @@ public class UpdateChecker {
             URL url = new URL("http://h.cnaude.org:8081/job/PurpleIRC-forge/lastStableBuild/api/json");
             URLConnection conn = url.openConnection();
             conn.setReadTimeout(5000);
-            conn.addRequestProperty("User-Agent", "PurpleIRC-spigot Update Checker");
+            conn.addRequestProperty("User-Agent", "PurpleIRC-forge Update Checker");
             conn.setDoOutput(true);
             final BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             final String response = reader.readLine();

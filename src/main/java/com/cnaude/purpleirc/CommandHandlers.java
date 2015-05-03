@@ -130,7 +130,7 @@ public class CommandHandlers implements ICommand {
 
     @Override
     public String getCommandUsage(ICommandSender sender) {
-        return plugin.getModID() + ":irc.commands.irc";
+        return plugin.getModID() + ": /irc help";
     }
 
     @Override
