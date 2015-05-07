@@ -68,6 +68,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -801,6 +803,16 @@ public class PurpleIRC {
 
     public String getModID() {
         return MOD_ID;
+    }
+    
+    public String getPlayerWorldName(EntityPlayerMP player) {
+        String worldName = defaultPlayerWorld;
+        
+        if (player.worldObj != null) {
+            return player.worldObj.provider.getDimensionName();
+        }
+        
+        return worldName;
     }
 
 }

@@ -284,7 +284,7 @@ public class ChatTokenizer {
         String displayName = player.getDisplayName();
         String playerIP = player.getPlayerIP();
         String host = plugin.getPlayerHost(playerIP);
-        String worldName = "";
+        String worldName = plugin.getPlayerWorldName(player);
         String worldAlias = "";
         String worldColor = "";
         String jobShort = "";
@@ -294,9 +294,6 @@ public class ChatTokenizer {
         }
         if (displayName == null) {
             displayName = "";
-        }
-        if (player.getServerForPlayer() != null) {
-            worldName = player.getServerForPlayer().getWorldInfo().getWorldName();
         }
         plugin.logDebug("[P]Raw message: " + message);
         return message.replace("%DISPLAYNAME%", displayName)

@@ -45,7 +45,7 @@ public class GamePlayerDeathListener {
         if (event.entityLiving instanceof EntityPlayer) {
             final EntityPlayerMP player = (EntityPlayerMP) event.entity;
             for (PurpleBot ircBot : plugin.ircBots.values()) {
-                ircBot.gameDeath(player, event.entityLiving.func_110142_aN().func_151521_b().getUnformattedText(), TemplateName.GAME_DEATH);
+                ircBot.gameDeath(player, event.source.func_151519_b(player).getUnformattedText(), TemplateName.GAME_DEATH);
             }
 
         }
