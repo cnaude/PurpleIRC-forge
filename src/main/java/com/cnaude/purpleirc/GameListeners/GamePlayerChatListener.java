@@ -42,6 +42,10 @@ public class GamePlayerChatListener {
     @SubscribeEvent(receiveCanceled=true)
     public void onServerChat(ServerChatEvent event) {
         plugin.logDebug("[onServerChat]: " + event.username + ": " + event.message);
+        if (event.isCanceled() && !plugin.ignoreChatCancel) {
+            plugin.logDebug("Ignoring chat message due to event cancellation.");
+            return;
+        }
         EntityPlayerMP player = (EntityPlayerMP) event.player;
         for (PurpleBot ircBot : plugin.ircBots.values()) {
             plugin.logDebug("[onServerChat]: Calling gameChat()...");
