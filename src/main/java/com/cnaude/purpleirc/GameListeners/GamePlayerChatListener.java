@@ -40,8 +40,10 @@ public class GamePlayerChatListener {
 
     @SubscribeEvent
     public void onServerChat(ServerChatEvent event) {
+        plugin.logDebug("[onServerChat]: " + event.username + ": " + event.message);
         EntityPlayerMP player = (EntityPlayerMP) event.player;
         for (PurpleBot ircBot : plugin.ircBots.values()) {
+            plugin.logDebug("[onServerChat]: Calling gameChat()...");
             ircBot.gameChat(player, event.message);
         }
     }
