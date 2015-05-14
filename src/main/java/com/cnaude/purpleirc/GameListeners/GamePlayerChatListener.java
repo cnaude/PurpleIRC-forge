@@ -18,6 +18,7 @@ package com.cnaude.purpleirc.GameListeners;
 
 import com.cnaude.purpleirc.PurpleBot;
 import com.cnaude.purpleirc.PurpleIRC;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.ServerChatEvent;
@@ -38,7 +39,7 @@ public class GamePlayerChatListener {
         this.plugin = plugin;
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(receiveCanceled=true)
     public void onServerChat(ServerChatEvent event) {
         plugin.logDebug("[onServerChat]: " + event.username + ": " + event.message);
         EntityPlayerMP player = (EntityPlayerMP) event.player;
