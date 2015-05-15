@@ -43,7 +43,7 @@ public class GamePlayerChatListener {
     public void onServerChat(ServerChatEvent event) {
         plugin.logDebug("[onServerChat]: " + event.username + ": " + event.message);
         if (event.isCanceled() && !plugin.ignoreChatCancel) {
-            plugin.logDebug("Ignoring chat message due to event cancellation.");
+            plugin.logDebug("Chat canceled! Accepting cancellation due to ignore-chat-cancel = " + plugin.ignoreChatCancel);
             return;
         }
         EntityPlayerMP player = (EntityPlayerMP) event.player;
