@@ -282,7 +282,11 @@ public class ChatTokenizer {
     public String playerTokenizer(EntityPlayerMP player, String message) {
         String pName = player.getCommandSenderName();        
         String displayName = player.getDisplayName();
-        String playerIP = player.getPlayerIP();
+        String playerIP = "";
+        try {
+            playerIP = player.getPlayerIP();
+        } catch (Exception ex) {            
+        }
         String host = plugin.getPlayerHost(playerIP);
         String worldName = plugin.getPlayerWorldName(player);
         String worldAlias = "";
