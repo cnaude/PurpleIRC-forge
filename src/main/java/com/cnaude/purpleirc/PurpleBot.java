@@ -76,7 +76,7 @@ import org.pircbotx.hooks.ListenerAdapter;
  */
 public final class PurpleBot {
 
-    private PircBotX bot;
+    protected PircBotX bot;
 
     protected boolean goodBot;
     public final PurpleIRC plugin;
