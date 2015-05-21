@@ -69,6 +69,7 @@ import org.pircbotx.UtilSSLSocketFactory;
 import org.pircbotx.cap.TLSCapHandler;
 import org.pircbotx.exception.IrcException;
 import org.pircbotx.hooks.ListenerAdapter;
+import org.yaml.snakeyaml.scanner.ScannerException;
 
 /**
  *
@@ -872,9 +873,9 @@ public final class PurpleBot {
                             + trustAllCerts + "] [TLS: " + tls + "]";
                 }
             }
-        } catch (IOException ex) {
+        } catch (IOException | ScannerException ex) {
             plugin.logError(ex.getMessage());
-            return false;
+            return false;        
         }
         return true;
     }

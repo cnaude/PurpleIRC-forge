@@ -28,6 +28,7 @@ import java.util.Map;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.representer.Representer;
+import org.yaml.snakeyaml.scanner.ScannerException;
 
 /**
  *
@@ -46,7 +47,7 @@ public final class PurpleConfiguration {
     final String COMMANDS = "commands";
     final String MESSAGE_FORMAT = "message-format";
 
-    public PurpleConfiguration(File file, boolean load) throws FileNotFoundException, IOException {
+    public PurpleConfiguration(File file, boolean load) throws FileNotFoundException, IOException, ScannerException {
         options = new DumperOptions();
         representer = new Representer();
         yaml = new Yaml(representer, options);
@@ -60,7 +61,7 @@ public final class PurpleConfiguration {
         }
     }
 
-    public void load() throws FileNotFoundException, IOException {
+    public void load() throws FileNotFoundException, IOException, ScannerException {
         try (InputStream ios = new FileInputStream(file)) {
             result = (Map<String, Object>) yaml.load(ios);
             if (result == null) {

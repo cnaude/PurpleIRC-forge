@@ -71,6 +71,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.yaml.snakeyaml.scanner.ScannerException;
 
 /**
  *
@@ -341,6 +342,8 @@ public class PurpleIRC {
         try {
             getConfig().load();
         } catch (FileNotFoundException ex) {
+            logError(ex.getMessage());
+        } catch (IOException | ScannerException ex) {
             logError(ex.getMessage());
         }
         debugEnabled = getConfig().getOption("Debug", false);
