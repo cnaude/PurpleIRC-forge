@@ -53,6 +53,7 @@ publishing {
 minecraft {
     version = "${minecraft_version}-${forge_version}"
     runDir = "eclipse"
+    srgExtra "PK: org/pircbotx com/cnaude/purpleirc/ext/org/pircbotx"
     srgExtra "PK: io/drakon/pulsar /"
     
     replaceIn "Version.java"
