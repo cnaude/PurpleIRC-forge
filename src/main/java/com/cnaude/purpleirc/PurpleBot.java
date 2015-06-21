@@ -1600,7 +1600,7 @@ public final class PurpleBot {
             String n = user.getNick();
             n = getNickPrefix(user, channel) + n;
             if (user.isAway()) {
-                n = n + EnumChatFormatting.GRAY + " | Away";
+                n = n + EnumChatFormatting.GRAY + " | Away | " + user.getAwayMessage();
             }
             if (n.equals(bot.getNick())) {
                 n = EnumChatFormatting.DARK_PURPLE + n;
