@@ -19,6 +19,7 @@ package com.cnaude.purpleirc.Commands;
 import com.cnaude.purpleirc.PurpleIRC;
 
 import com.cnaude.purpleirc.CommandSender;
+import com.cnaude.purpleirc.Utilities.ChatColor;
 import net.minecraft.util.EnumChatFormatting;
 
 /**
@@ -56,7 +57,9 @@ public class Say implements IRCCommandInterface {
                 for (int i = 3; i < args.length; i++) {
                     msg = msg + " " + args[i];
                 }
-                plugin.ircBots.get(bot).asyncIRCMessage(channelName, msg.substring(1));
+                msg = plugin.colorConverter.gameColorsToIrc(
+                        plugin.colorConverter.translateAlternateColorCodes('&', msg.substring(1)));
+                plugin.ircBots.get(bot).asyncIRCMessage(channelName, msg);
             } else {
                 sender.sendMessage(plugin.invalidBotName.replace("%BOT%", bot));
             }
