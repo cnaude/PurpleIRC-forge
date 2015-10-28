@@ -66,8 +66,8 @@ import java.util.TimerTask;
 import net.minecraft.command.CommandHandler;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -781,7 +781,7 @@ public class PurpleIRC {
     }
 
     public void broadcastToGame(final String message, final String permission) {
-        MinecraftServer.getServer().getConfigurationManager().sendChatMsg(new ChatComponentText(message));
+        MinecraftServer.getServer().getConfigurationManager().sendChatMsg(ForgeHooks.newChatWithLinks(message));
     }
 
     public EntityPlayerMP getPlayerExact(String name) {
