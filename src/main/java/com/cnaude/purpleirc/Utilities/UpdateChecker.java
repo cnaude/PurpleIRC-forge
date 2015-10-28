@@ -52,7 +52,7 @@ public class UpdateChecker {
         this.currentVersion = plugin.getDescription().getVersion();
         try {
             currentBuild = Integer.valueOf(currentVersion.split("-")[2]);
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             currentBuild = 0;
         }
         startUpdateChecker();
