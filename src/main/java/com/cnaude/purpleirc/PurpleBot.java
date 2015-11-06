@@ -93,6 +93,7 @@ public final class PurpleBot {
     public boolean channelCmdNotifyEnabled;
     public boolean relayPrivateChat;
     public boolean partInvalidChannels;
+    public boolean pingFix;
     public int botServerPort;
     public long chatDelay;
     public String botServer;
@@ -660,6 +661,7 @@ public final class PurpleBot {
             rawMessage = config.getOption("raw-message", "");
             relayPrivateChat = config.getOption("relay-private-chat", false);
             partInvalidChannels = config.getOption("part-invalid-channels", false);
+            pingFix = config.getOption("zero-width-space", false);
             partInvalidChannelsMsg = config.getOption("part-invalid-channels-message", "");
             nick = config.getOption("nick", "");
             botNick = nick;
