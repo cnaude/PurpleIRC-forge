@@ -65,18 +65,20 @@ minecraft {
 dependencies {
     compile 'us.dynmap:DynmapCoreAPI:2.1'
     shade fileTree (dir: 'dist-lib', include: '*.jar')
-    shade 'org.yaml:snakeyaml:1.15'
-    shade 'com.googlecode.json-simple:json-simple:1.1.1'
+    shade 'org.yaml:snakeyaml:1.17'
+    shade('com.googlecode.json-simple:json-simple:1.1.1') {
+        exclude group: 'org.hamcrest', module: 'hamcrest-core'
+    }
 }
 
 jar {
     configurations.shade.each { dep ->
         from(project.zipTree(dep)){
-            exclude 'META-INF', 'META-INF/**'
+            exclude 'META-INF', 'META-INF/**', 'LICENSE.txt'
         }
     }
 }
-    
+
 processResources
 {
     inputs.property "version", project.version
