@@ -33,6 +33,7 @@ import com.cnaude.purpleirc.IRCListeners.ServerResponseListener;
 import com.cnaude.purpleirc.IRCListeners.TopicListener;
 import com.cnaude.purpleirc.IRCListeners.WhoisListener;
 import com.cnaude.purpleirc.Utilities.CaseInsensitiveMap;
+import com.cnaude.purpleirc.Utilities.ChatColor;
 import com.cnaude.purpleirc.Utilities.PurpleConfiguration;
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableSortedSet;
@@ -1802,7 +1803,8 @@ public final class PurpleBot {
         }
     }
 
-    public String filterMessage(String message, String myChannel) {
+public String filterMessage(String message, String myChannel) {
+        final String regex = ".*(https?|ftp|file)://.*";
         if (filters.containsKey(myChannel)) {
             if (!filters.get(myChannel).isEmpty()) {
                 for (String filter : filters.get(myChannel)) {
@@ -1817,7 +1819,21 @@ public final class PurpleBot {
                 }
             }
         }
-        return message;
+        String strings[] = message.split(" ");
+        for (int x = 0; x < strings.length; x++) {
+            if (strings[x].matches(regex)) {
+                strings[x] = ChatColor.stripColor(strings[x]);
+            }
+        }
+        StringBuilder builder = new StringBuilder();
+        for (String string : strings) {
+            if (builder.length() > 0) {
+                builder.append(" ");
+            }
+            builder.append(string);
+        }
+
+        return builder.toString();
     }
 
     // Broadcast chat messages from IRC
