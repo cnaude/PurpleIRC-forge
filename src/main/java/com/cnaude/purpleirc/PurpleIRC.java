@@ -106,6 +106,7 @@ public class PurpleIRC {
             listSeparator,
             listPlayer,
             ircNickPrefixIrcOp,
+            ircNickPrefixOwner,
             ircNickPrefixSuperOp,
             ircNickPrefixOp,
             ircNickPrefixHalfOp,
@@ -364,6 +365,7 @@ public class PurpleIRC {
         defaultPlayerWorld = colorConverter.translateAlternateColorCodes('&', getConfig().getOption("message-format", "default-player-world", ""));
 
         ircNickPrefixIrcOp = colorConverter.translateAlternateColorCodes('&', getConfig().getOption("nick-prefixes", "ircop", "~"));
+        ircNickPrefixOwner = colorConverter.translateAlternateColorCodes('&', getConfig().getOption("nick-prefixes.owner", "@"));
         ircNickPrefixSuperOp = colorConverter.translateAlternateColorCodes('&', getConfig().getOption("nick-prefixes", "ircsuperop", "&&"));
         ircNickPrefixOp = colorConverter.translateAlternateColorCodes('&', getConfig().getOption("nick-prefixes", "op", "@"));
         ircNickPrefixHalfOp = colorConverter.translateAlternateColorCodes('&', getConfig().getOption("nick-prefixes", "halfop", "%"));
