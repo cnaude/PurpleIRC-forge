@@ -58,8 +58,9 @@ public class IRCMessageHandler {
             plugin.logDebug("User is muted. Ignoring message from " + user.getNick() + ": " + message);
             return;
         }
-        if (message.startsWith(ircBot.commandPrefix) && (!message.startsWith(ircBot.commandPrefix + ircBot.commandPrefix))) {
-            String command = message.split(" ")[0].substring(ircBot.commandPrefix.length());
+        String command = message.split(" ")[0].substring(ircBot.commandPrefix.length());
+        
+        if (message.startsWith(ircBot.commandPrefix) && command.matches("^\\w.*")) {
 
             String commandArgs = null;
             if (message.contains(" ")) {
