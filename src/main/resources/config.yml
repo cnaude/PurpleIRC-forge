@@ -158,3 +158,7 @@ Debug: false
 ignore-chat-cancel: false
 # Broadcast IRC chat to console
 broadcast-chat-to-console: true
+# command aliases for /irc
+command-aliases:
+    - pirc
+    - purpleirc

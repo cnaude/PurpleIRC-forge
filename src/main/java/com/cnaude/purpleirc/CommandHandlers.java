@@ -135,7 +135,7 @@ public class CommandHandlers implements ICommand {
 
     @Override
     public java.util.List getCommandAliases() {
-        return null;
+        return plugin.commandAliases;
     }
 
     @Override
