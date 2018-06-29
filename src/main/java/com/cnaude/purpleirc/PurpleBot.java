@@ -711,7 +711,7 @@ public final class PurpleBot {
 
             for (String s : config.getOption("custom-prefixes", new ArrayList<String>())) {
                 String pair[] = s.split(" ", 2);
-                if (pair.length > 0) {
+                if (pair.length > 1) {
                     userPrefixes.put(pair[0], plugin.colorConverter.translateAlternateColorCodes('&', pair[1]));
                 }
             }
